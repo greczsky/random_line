@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "index.mjs",
   "bin": {
-    "random_line": "./index.js"
+    "random_line": "./index.mjs"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w"
+    "build": "tsc --build tsconfig.json",
+    "watch": "tsc -w -p tsconfig.json"
   },
   "author": "",
+  "files": [
+    "index.mjs"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.2.0",

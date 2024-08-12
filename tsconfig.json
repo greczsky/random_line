@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "NodeNext",
-    "outDir": "dist",
-    "sourceMap": true,
-    "removeComments": true,
-    "esModuleInterop": true,
-    "noEmit": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "noImplicitAny": true,
+    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+    "lib": ["es2023"],
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowJs": false
   }
 }

@@ -13,7 +13,7 @@ const filePath = positionals[0];
 const lineIdx = parseInt(positionals[1], 10);
 let index = [0];
 
-const randomLine = (path, idx) => {
+const randomLine = (path: string, idx: number): void => {
   const indexFilePath = `${path}.idx`;
   //retrieve index from index file
   if (existsSync(indexFilePath)) {
@@ -29,7 +29,7 @@ const randomLine = (path, idx) => {
     });
     let readLine = createInterface({ input: readStream });
     readLine.on("line", (line) => {
-      offset += Buffer.byteLength(line, "utf8") + 1; // line length + length of \n is the offset of next line
+      offset += Buffer.byteLength(line + "\n", "utf8"); // line + length of \n is the offset of next line
       index.push(offset);
     });
     readLine.on("close", () => {
@@ -41,7 +41,7 @@ const randomLine = (path, idx) => {
   }
 };
 
-const retrieveLine = (path, idx) => {
+const retrieveLine = (path: string, idx: number) => {
   const readStream = createReadStream(path, {
     encoding: "utf-8",
     start: index[idx],
@@ -55,13 +55,13 @@ const retrieveLine = (path, idx) => {
   readLine.on("error", (error) => console.error(error.message));
 };
 
-const readIndexFromFile = (path) => {
+const readIndexFromFile = (path: string) => {
   return readFileSync(`${path}`, { encoding: "utf8" })
     .split(",")
     .map((offset) => parseInt(offset, 10));
 };
 
-const writeIndexToFile = (path) => {
+const writeIndexToFile = (path: string) => {
   writeFile(`${path}`, index.join(","), (err) => {
     if (err) {
       console.error(err);
